@@ -1,5 +1,5 @@
 name: box-thinky
-version: 1.0.1
+version: 1.0.2
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -12,7 +12,7 @@ keywords:
   - json
   - nodejs
 packages:
-  - rethinkdb@1.13
+  - rethinkdb@1.14
 script: |
   git clone https://github.com/joyent/node
   cd node
@@ -33,4 +33,4 @@ env:
   WERCKER_RETHINKDB_PORT: 28015
   WERCKER_RETHINKDB_HOST: $$HOST$$
   WERCKER_RETHINKDB_URL: $$HOST$$:28015
-  WERCKER_RETHINKDB_VERSION: "1.12"
+  WERCKER_RETHINKDB_VERSION: "1.14"
