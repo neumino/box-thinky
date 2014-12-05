@@ -16,7 +16,7 @@ packages:
 script: |
   git clone https://github.com/joyent/node
   cd node
-  git checkout v0.10.26-release
+  git checkout v0.10.33-release
   ./configure
   make -j 4
   sudo make install
