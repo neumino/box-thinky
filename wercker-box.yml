@@ -1,5 +1,5 @@
 name: box-thinky
-version: 2.0.4
+version: 2.3.0
 inherits: wercker/ubuntu12.04-webessentials@0.0.3
 type: main
 platform: ubuntu@12.04
@@ -12,25 +12,17 @@ keywords:
   - json
   - nodejs
 packages:
-  - rethinkdb@2.0
+  - rethinkdb@2.3.0
 script: |
-  git clone https://github.com/joyent/node
-  cd node
-  git checkout v0.12.0-release
-  ./configure
-  make -j 4
-  sudo make install
-  sudo ls -s /usr/bin/node node
-  cd
+  curl --silent --location https://deb.nodesource.com/setup_4.x | sudo bash -
   source /etc/lsb-release && echo "deb http://download.rethinkdb.com/apt $DISTRIB_CODENAME main" | sudo tee /etc/apt/sources.list.d/rethinkdb.list
   wget -O- http://download.rethinkdb.com/apt/pubkey.gpg | sudo apt-key add -
   sudo apt-get update
-  sudo apt-get install rethinkdb -y
+  sudo apt-get install rethinkdb nodejs -y
   sudo mkdir -p /etc/rethinkdb/instances.d
   sudo -- sh -c "echo 'bind=all' > /etc/rethinkdb/instances.d/default.conf"
-
 env:
   WERCKER_RETHINKDB_PORT: 28015
   WERCKER_RETHINKDB_HOST: $$HOST$$
   WERCKER_RETHINKDB_URL: $$HOST$$:28015
-  WERCKER_RETHINKDB_VERSION: "2.0"
+  WERCKER_RETHINKDB_VERSION: "2.3.0"
